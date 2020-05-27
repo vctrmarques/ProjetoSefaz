@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"></link>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+	<link rel="stylesheet" type="text/css" href="stylesheet.css" media="screen" />
+<h:head>
+	<title>Cadastro de Usuários</title>
+</h:head>
+<h:body>
+<div class="panel panel-default">
+		<div class="panel-heading">
+			<strong>Cadastro de Usuario</strong>
+		</div>
+		<div class="panel-body">
+			<h:outputText value="Usuário ou senha incorretos!"
+				rendered="#{param.erro}" style="color: darkred" />
+			<h:form id="form" name="form" class="form-horizontal" style="margin: 10px">
+				<div class="form-group">
+					<fieldset>
+						<div class="form-group row">
+							<div class="col-md-2">
+								<h:inputText type="text" class="form-control input-sm" id="id" size="3"
+									readOnly="true" value="#{usuarioBean.usuario.id}"/>
+							</div>
+						</div>
+						<div class="form-group row">
+							<div class="col-md-4">
+								<h:outputLabel>Nome</h:outputLabel>
+								<h:inputText id="nome" class="form-control input-sm"
+									value="#{usuarioBean.usuario.nome}" />
+							</div>
+						</div>
+						<div class="form-group row">
+							<div class="col-md-4">
+								<h:outputLabel>E-mail</h:outputLabel>
+								<h:inputText id="email" class="form-control input-sm"
+									maxlength="50" value="#{usuarioBean.usuario.email}" />
+							</div>
+						</div>
+						<div class="form-group row">
+							<div class="col-md-4">
+								<h:outputLabel>Senha</h:outputLabel>
+								<h:inputText id="senha" class="form-control input-sm"
+									value="#{usuarioBean.usuario.senha}" />
+							</div>
+						</div>
+						<div class="form-group row">
+							<div class="col-md-4">
+								<h:outputLabel>Confirmar senha</h:outputLabel>
+								<h:inputText id="confirmarSenha" class="form-control input-sm"
+									value="#{usuarioBean.confirmarSenha}" />
+							</div>
+						</div>
+						<div class="form-group row">
+							<div class="col-md-2">
+								<h:outputLabel>DDD</h:outputLabel>
+								<h:inputText id="DDD" class="form-control input-sm" size="3"
+									value="#{usuarioBean.fone.ddd}" />
+									<h:outputLabel>Telefone</h:outputLabel>
+								<h:inputText id="telefone" class="form-control input-sm"
+									value="#{usuarioBean.fone.numero}" />
+									<h:outputLabel>Tipo</h:outputLabel>
+								<h:inputText id="tipo" class="form-control input-sm"
+									value="#{usuarioBean.fone.tipo}" />
+							</div>
+						</div>
+					</fieldset>
+				</div>
+				<div class="form-group row">
+					<h:commandButton value="Salvar" action="#{usuarioBean.salvar}" update="form" class="btn btn-sm btn-primary"/>
+					<h:commandButton type="reset" value="Cancelar" action="#{usuarioBean.limparCampos}" update="form" class="btn btn-sm btn-default"/>
+				</div>
+			</h:form>
+		</div>
+	</div>
+</h:body>
+</html> 
