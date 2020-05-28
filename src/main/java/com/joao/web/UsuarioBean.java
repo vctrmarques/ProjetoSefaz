@@ -14,7 +14,7 @@ import com.joao.daoImpl.UsuarioDAOImpl;
 import com.joao.model.Telefone;
 import com.joao.model.Usuario;
 
-@ManagedBean(name="usuarioBean")
+@ManagedBean(name = "usuarioBean")
 @RequestScoped
 public class UsuarioBean {
 
@@ -110,7 +110,7 @@ public class UsuarioBean {
 					contex.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"Senha incorreta!",""));
 				}
 		}
-		return "usuario"; 
+		return "falha"; 
 	}
 	
 	public String salvar() {

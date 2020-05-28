@@ -9,7 +9,7 @@ import javax.persistence.Query;
 
 @SuppressWarnings("serial")
 @RequestScoped
-public abstract class UsuarioDAO implements Serializable {
+public class UsuarioDAO implements Serializable {
 	
 	@PersistenceContext
 	private EntityManager em;
