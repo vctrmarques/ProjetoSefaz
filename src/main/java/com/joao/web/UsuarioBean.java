@@ -131,7 +131,7 @@ public class UsuarioBean {
 		return "sucesso";
 	}
 	
-	public String editar() {
+	public String editar(Integer id) {
 		FacesContext contex = FacesContext.getCurrentInstance();
 			try {
 				if(!this.senha.equalsIgnoreCase(this.confirmarSenha)) {
@@ -154,6 +154,7 @@ public class UsuarioBean {
 
 		try {
 			controlador.excluirUsuario(id);
+			controlador.excluirTelefone(id);
 		} catch (Exception e) {
 			context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Usuario não excluido!",""));
 		}
