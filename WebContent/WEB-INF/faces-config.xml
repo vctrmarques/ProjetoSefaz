@@ -31,4 +31,28 @@
 			<to-view-id>/login.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
+	
+	<navigation-rule>
+		<from-view-id>/mostraUsuario.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>salvar</from-outcome>
+			<to-view-id>/mostraUsuario.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>alterar</from-outcome>
+			<to-view-id>/alterarUsuario.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>excluir</from-outcome>
+			<to-view-id>/mostraUsuario.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	
+	<navigation-rule>
+		<from-view-id>/alterarUsuario.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>editar</from-outcome>
+			<to-view-id>/mostraUsuario.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
 </faces-config>

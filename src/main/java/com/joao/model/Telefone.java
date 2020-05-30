@@ -21,7 +21,7 @@ public class Telefone implements Serializable{
 	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	private int ddd;
+	private Integer ddd;
 	private String numero;
 	private String tipo;
 	
@@ -29,10 +29,10 @@ public class Telefone implements Serializable{
 	@JoinColumn(name= "usuario", nullable = true)
 	private Usuario usuario;
 	
-	public int getDdd() {
+	public Integer getDdd() {
 		return ddd;
 	}
-	public void setDdd(int ddd) {
+	public void setDdd(Integer ddd) {
 		this.ddd = ddd;
 	}
 	public String getNumero() {

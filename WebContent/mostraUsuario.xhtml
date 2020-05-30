@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
 	xmlns:h="http://xmlns.jcp.org/jsf/html">
 <link
@@ -10,7 +11,7 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 <h:head>
-	<title>Cadastro de Usuários</title>
+	<title>Mostrar Usuários</title>
 </h:head>
 <h:body>
 	<div class="panel panel-default">
@@ -26,7 +27,6 @@
 							<th>Id</th>
 							<th>Nome</th>
 							<th>Email</th>
-							<th>Senha</th>
 							<th>ddd</th>
 							<th>Telefone</th>
 							<th>Tipo</th>
@@ -35,28 +35,31 @@
 					</thead>
 					<tbody>
 						<h:form id="formUsuario">
+						<ui:repeat value="#{usuarioBean.listUser}" var="user">
 							<tr>
-								<td><h:outputText type="text" id="id" readOnly="true" value="#{usuarioBean.usuario.id}" size="3"/></td>
-								<td><h:outputText type="text" id="nome" readOnly="true" value="#{usuarioBean.usuario.nome}" /></td>
-								<td><h:outputText type="text" id="email" readOnly="true" value="#{usuarioBean.usuario.email}" /></td>
-								<td><h:outputText type="text" id="senha" readOnly="true" value="#{usuarioBean.usuario.senha}" /></td>
-								<td><h:outputText type="text" id="DDD" readOnly="true" value="#{usuarioBean.fone.ddd}" size="3" /></td>
-								<td><h:outputText type="text" id="numero" readOnly="true" value="#{usuarioBean.fone.numero}" size="6"/></td>
-								<td><h:outputText type="text" id="tipo" readOnly="true" value="#{usuarioBean.fone.tipo}" /></td>
+								<td><h:outputText type="text" id="id" readOnly="false" value="#{user.id}" size="3"/></td>
+								<td><h:outputText type="text" id="nome" readOnly="true" value="#{user.nome}" /></td>
+								<td><h:outputText type="text" id="email" readOnly="true" value="#{user.email}" /></td>
+								<td><h:outputText type="text" id="DDD" readOnly="true" value="" size="3" /></td>
+								<td><h:outputText type="text" id="numero" readOnly="true" value="" size="6"/></td>
+								<td><h:outputText type="text" id="tipo" readOnly="true" value="" /></td>
 								<td>
-									<div class="btn-group pull-right">
-										<h:commandButton action="#{usuarioBean.alterar(usuarioBean.usuario.id)}" update="formUsuario" value="Alterar" class="btn btn-sm btn-primary" />
-										<h:commandButton action="#{usuarioBean.excluir(usuarioBean.usuario.id)}" update="formUsuario" value="Excluir" class="delete btn btn-sm btn-danger" />
+									<div class="btn-group pull-right" size="20">
+										<h:commandButton id="alterar" action="#{usuarioBean.alterar(user.id)}" update="formUsuario" value="Alterar" immediate="true" class="btn btn-sm btn-primary" />
+										<h:commandButton id="excluir" action="#{usuarioBean.excluir(user.id)}" update="formUsuario" value="Excluir" immediate="true" class="delete btn btn-sm btn-danger" />
 									</div>
 								</td>
 							</tr>
-						</h:form>
-					</tbody>
+						  </ui:repeat>
+					</h:form>
+				</tbody>
 				</table>
 			</div>
 		</div>
 		<div class="panel-footer">
-			<a class="btn btn-sm btn-success">Adicionar</a>
+		<h:form id="formUsuarioSalvar">
+			<h:commandButton action="#{usuarioBean.novo}" update="formUsuarioSalvar" value="Adicionar" class="btn btn-sm btn-success" />
+		</h:form>
 		</div>
 	</div>
 </h:body>

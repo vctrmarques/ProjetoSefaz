@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pageflow:Pageflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf15907910268890" configfile="/ProjetoSefaz/WebContent/WEB-INF/faces-config.xml">
+  <nodes xsi:type="pageflow:PFPage" name="*" x="122" y="178" id="pf15907910798751" referenceLink="//@navigationRule.0/@fromViewId|" outlinks="pf15907910798752" path="*"/>
+  <nodes xsi:type="pageflow:PFPage" name="index.xhtml" x="338" y="178" id="pf15907910798753" referenceLink="//@navigationRule.0/@navigationCase.0/@toViewId|" inlinks="pf15907910798752" path="/index.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="usuario.xhtml" x="122" y="562" id="pf15907910798754" referenceLink="//@navigationRule.3/@navigationCase.2/@toViewId|" outlinks="pf15907910798755" inlinks="pf15907910798757" path="/usuario.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="mostraUsuario.xhtml" x="338" y="754" id="pf15907910798768" referenceLink="//@navigationRule.4/@navigationCase.0/@toViewId|" outlinks="pf15907910798757 pf159079113205812 pf159079591822417" inlinks="pf15907910798755 pf15907910798769 pf159079113205812 pf159079583372515" path="/mostraUsuario.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="login.xhtml" x="122" y="946" id="pf159079107987610" referenceLink="//@navigationRule.2/@navigationCase.1/@toViewId|" outlinks="pf15907910798769 pf159079107987611" inlinks="pf159079107987611" path="/login.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="aUsuario.xhtml" id="pf159079583372516" referenceLink="//@navigationRule.4/@fromViewId|" outlinks="pf159079583372515" inlinks="pf159079591822417" path="/alterarUsuario.xhtml"/>
+  <links id="pf15907910798752" target="pf15907910798753" source="pf15907910798751" outcome="inicio"/>
+  <links id="pf15907910798755" target="pf15907910798768" source="pf15907910798754" outcome="sucesso"/>
+  <links id="pf15907910798769" target="pf15907910798768" source="pf159079107987610" outcome="sucesso"/>
+  <links id="pf159079107987611" target="pf159079107987610" source="pf159079107987610" outcome="falha">
+    <bendPoints d1Height="-36" d2Height="-36"/>
+    <bendPoints d1Width="-64" d1Height="-36" d2Width="-64" d2Height="-36"/>
+    <bendPoints d1Width="-64" d2Width="-64"/>
+  </links>
+  <links id="pf15907910798757" target="pf15907910798754" source="pf15907910798768" outcome="excluir"/>
+  <links id="pf159079113205812" target="pf15907910798768" source="pf15907910798768" outcome="salvar"/>
+  <links id="pf159079583372515" target="pf15907910798768" source="pf159079583372516" outcome="editar"/>
+  <links id="pf159079591822417" target="pf159079583372516" source="pf15907910798768" outcome="alterar"/>
+</pageflow:Pageflow>
