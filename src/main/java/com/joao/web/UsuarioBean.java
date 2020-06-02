@@ -27,7 +27,7 @@ public class UsuarioBean {
 	private Telefone fone;
 	private Usuario usuario;
 	private List<Usuario> usuarios;
-	private List<Usuario> listUser;
+	private List<Usuario> listUser = new ArrayList<Usuario>();
 	
 	public UsuarioBean() {
 		usuario = new Usuario();
@@ -100,11 +100,22 @@ public class UsuarioBean {
 		this.usuario = null;
 	}
 	
+	
 	public String alterar(Integer id) {
-		UsuarioDAOImpl usuarioDAO = new UsuarioDAOImpl();
-		setUsuario(usuarioDAO.findUserById(id));
+		FacesContext context = FacesContext.getCurrentInstance();
+		String retorno = "";
+		usuarios = new ArrayList<Usuario>();
+
+		if(id == null) {
+			context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"Id do usuário não pode  ser vazio!",""));
+			retorno = "mostrarUsuario";
+		}else {
+			UsuarioDAOImpl usuarioDAO = new UsuarioDAOImpl();
+			usuario = usuarioDAO.findUserById(id);
+			retorno = "alterar";
+		}
 		
-		return "alterar";		
+		return retorno;		
 	}
 
 	public String logar() {
@@ -132,7 +143,7 @@ public class UsuarioBean {
 		FacesContext contex = FacesContext.getCurrentInstance();
 		ControllerImpl controlador = new ControllerImpl();
 			try {
-				if(!this.senha.equalsIgnoreCase(this.confirmarSenha)) {
+				if(!senha.equalsIgnoreCase(confirmarSenha)) {
 					contex.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"Usuario não cadastrado!",""));
 					return "usuario";
 				}else {
@@ -147,14 +158,35 @@ public class UsuarioBean {
 		return "sucesso";
 	}
 	
-	public String editar(Integer id) {
+	public String editar() {
 		FacesContext contex = FacesContext.getCurrentInstance();
 		ControllerImpl controlador = new ControllerImpl();
 			try {
-				telefone.add(fone);
-				usuario.setTelefone(telefone);
-				controlador.alterarUsuario(usuario);
-				controlador.alterarTelefone(fone);
+				
+				if(usuario.getSenha().equals("") || confirmarSenha.equals("") ||!usuario.getSenha().equalsIgnoreCase(confirmarSenha)) {
+					contex.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"Usuario não cadastrado!",""));
+					return "usuario";
+				}else {
+					UsuarioDAOImpl usuarioDAO = new UsuarioDAOImpl();
+					Usuario usuariNew = usuarioDAO.findUserById(usuario.getId());
+					
+					usuariNew.setId(usuario.getId());
+					usuariNew.setNome(usuario.getNome());
+					usuariNew.setEmail(usuario.getEmail());
+					usuariNew.setSenha(usuario.getSenha());
+					
+					/*Telefone fone = new Telefone();
+					fone.setDdd(usuario.getTelefone().get(0).getDdd());
+					fone.setNumero(usuario.getTelefone().get(0).getNumero());
+					fone.setTipo(usuario.getTelefone().get(0).getTipo());*/
+					
+					telefone.add(fone);
+					usuariNew.setTelefone(telefone);
+					
+					
+					controlador.alterarTelefone(fone);
+					controlador.alterarUsuario(usuariNew);
+				}
 			} catch (Exception e) {
 				contex.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Usuario não alterado!",""));
 			}
@@ -166,12 +198,15 @@ public class UsuarioBean {
 		ControllerImpl controlador = new ControllerImpl();
 
 		try {
+			if(usuario.getId() == null) {
+				context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"Id do usuário não pode  ser vazio!",""));
+			}
 			controlador.excluirTelefone(id);
 			controlador.excluirUsuario(id);
 		} catch (Exception e) {
 			context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Usuario não excluido!",""));
 		}
-		return "usuario";
+		return "mostrarUsuario";
 	}
 
 }

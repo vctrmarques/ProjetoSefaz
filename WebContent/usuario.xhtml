@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
-	xmlns:h="http://xmlns.jcp.org/jsf/html">
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+	
+<h:head>
 	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"></link>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
 	<link rel="stylesheet" type="text/css" href="stylesheet.css" media="screen" />
-<h:head>
 	<title>Cadastro de Usuários</title>
 </h:head>
 <h:body>
@@ -56,17 +58,16 @@
 							</div>
 						</div>
 						<div class="form-group row">
-							<div class="col-md-2">
-								<h:outputLabel>DDD</h:outputLabel>
-								<h:inputText id="DDD" class="form-control input-sm" size="3"
-									value="#{usuarioBean.fone.ddd}" />
+							<ui:repeat value="#{usuarioBean.fone}" var="fone">
+								<div class="col-md-2">
+									<h:outputLabel>DDD</h:outputLabel>
+									<h:inputText id="DDD" class="form-control input-sm" size="3" value="#{fone.ddd}" />
 									<h:outputLabel>Telefone</h:outputLabel>
-								<h:inputText id="telefone" class="form-control input-sm"
-									value="#{usuarioBean.fone.numero}" />
+									<h:inputText id="telefone" class="form-control input-sm" value="#{fone.numero}" />
 									<h:outputLabel>Tipo</h:outputLabel>
-								<h:inputText id="tipo" class="form-control input-sm"
-									value="#{usuarioBean.fone.tipo}" />
-							</div>
+									<h:inputText id="tipo" class="form-control input-sm" value="#{fone.tipo}" />
+								</div>
+							</ui:repeat>
 						</div>
 					</fieldset>
 				</div>

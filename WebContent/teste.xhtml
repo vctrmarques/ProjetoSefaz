@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:h="http://java.sun.com/jsf/html"
+  xmlns:f="http://java.sun.com/jsf/core"
+  xmlns:ui="http://java.sun.com/jsf/facelets"
+  xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+  <title>Exemplo de execução JavaScript a partir de um Bean JSF com Primefaces</title>
+
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+
+  <script>
+    //<![CDATA[
+    function showMensagemSweetAlert() {
+      swal(
+          "Aviso!",
+          "A origem do disparo foi o Bean, porém só é disparado quando o contador é maior 5!",
+          "success");
+    }
+
+   /*
+    xhr é o objeto de solicitação/requisição;
+    status é o status de resposta como string;
+    args são os parâmetros de retorno de chamada opcionais transmitidos do servidor como JSON usando a API PrimeFaces RequestContext.
+    */
+    
+    function showMensagemSweetAlertComRetorno(xhr, status, args) {
+      if (args.contador <= 5) {
+        swal("Aviso!", "Contador menor ou igual a 5: (" + args.contador
+            + ")", "success");
+      }
+    }
+    //]]>
+  </script>
+
+
+</h:head>
+<h:body>
+
+  <h:form prependId="true">
+    <p:commandButton value="Executar contador" 
+      actionListener="#{contadorBean.doExecutar}" update="lblcontador"
+      oncomplete="showMensagemSweetAlertComRetorno(xhr, status, args)" />
+
+    <br />
+
+    <p:outputLabel style="font-size:36px" value="Valor do contador:" />
+    <p:outputLabel style="font-size:36px; color:blue"
+      value="#{contadorBean.contador}" id="lblcontador" />
+  </h:form>
+
+</h:body>
+</html>
